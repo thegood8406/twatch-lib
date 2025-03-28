@@ -270,7 +270,7 @@ static void gps_parse_gngga_sentence(uint8_t *nmea_gga_terms)
                 if ((term_end - term_start) > 0)
                 {
                   gps_parse_degrees(term_start, &g_lat);
-                  ESP_LOGI(TAG, "lat: %d.%d", g_lat.deg, g_lat.billionths);
+                  ESP_LOGI(TAG, "lat: %d.%ld", g_lat.deg, g_lat.billionths);
                 }
               }
               break;
@@ -287,7 +287,7 @@ static void gps_parse_gngga_sentence(uint8_t *nmea_gga_terms)
                 if ((term_end - term_start) > 0)
                 {
                   gps_parse_degrees(term_start, &g_lng);
-                  ESP_LOGI(TAG, "lng: %d.%d", g_lng.deg, g_lng.billionths);
+                  ESP_LOGI(TAG, "lng: %d.%ld", g_lng.deg, g_lng.billionths);
                 }
               }
               break;
@@ -344,7 +344,7 @@ static void gps_parse_gngga_sentence(uint8_t *nmea_gga_terms)
 
 /**
  * gps_parse_gnrmc_sentence()
- * 
+ *
  * @brief Parse a NMEA GNRMC sentence.
  * @param nmea_rmc_terms: pointer to a text string containing the terms to parse
  **/
@@ -354,7 +354,7 @@ static void gps_parse_gnrmc_sentence(uint8_t *nmea_rmc_terms)
   int term_pos;
   uint8_t *term_start, *term_end;
   bool b_valid_data = false;
-  
+
   /* We start with first term. */
   term_pos = 0;
 
@@ -396,10 +396,10 @@ static void gps_parse_gnrmc_sentence(uint8_t *nmea_rmc_terms)
               {
                 if (b_valid_data)
                 {
-                  if ((term_end - term_start) > 0) 
+                  if ((term_end - term_start) > 0)
                   {
                     gps_parse_degrees(term_start, &g_lat);
-                    ESP_LOGI(TAG, "lat: %d.%d", g_lat.deg, g_lat.billionths);
+                    ESP_LOGI(TAG, "lat: %d.%ld", g_lat.deg, g_lat.billionths);
                   }
                 }
               }
@@ -422,7 +422,7 @@ static void gps_parse_gnrmc_sentence(uint8_t *nmea_rmc_terms)
                   if ((term_end - term_start) > 0)
                   {
                     gps_parse_degrees(term_start, &g_lng);
-                    ESP_LOGI(TAG, "lng: %d.%d", g_lng.deg, g_lng.billionths);
+                    ESP_LOGI(TAG, "lng: %d.%ld", g_lng.deg, g_lng.billionths);
                   }
                 }
               }
@@ -483,7 +483,7 @@ static void gps_parse_gnrmc_sentence(uint8_t *nmea_rmc_terms)
 
 /**
  * gps_parse_sentence()
- * 
+ *
  * @brief Parse a given NMEA sentence
  * @param nmea_sentence: pointer to a NMEA sentence
  **/
@@ -510,7 +510,7 @@ static void gps_parse_sentence(uint8_t *nmea_sentence)
 
 /**
  * gps_process_rx()
- * 
+ *
  * @brief Wait data from GPS module and process it.
  * @param nmea_rmc_terms: pointer to a text string containing the terms to parse
  * @return number of bytes read from GPS.
@@ -649,9 +649,9 @@ static void twatch_gps_control(void *pvParameters)
         {
           ESP_LOGI(TAG, "Waking up GPS ...");
           /* Wake-up GPS. */
-          vTaskDelay(60/portTICK_RATE_MS);
+          vTaskDelay(60/portTICK_PERIOD_MS);
           gpio_set_level(TWATCH_GPS_WAKEUP, 0);
-          vTaskDelay(200/portTICK_RATE_MS);
+          vTaskDelay(200/portTICK_PERIOD_MS);
           gpio_set_level(TWATCH_GPS_WAKEUP, 1);
 
           /* GPS should be woken up. */
@@ -736,7 +736,7 @@ esp_err_t twatch_gps_on(void)
 
     /* Power on GPS through LDO4. */
     result = twatch_pmu_gps_power(true);
-    vTaskDelay(200/portTICK_RATE_MS);
+    vTaskDelay(200/portTICK_PERIOD_MS);
 
     /* Change current state. */
     g_gps_state = GPS_ON;

@@ -2,6 +2,9 @@
  * esp32_rmt_remotes.h
  *
  */
+
+#pragma once
+
 #include "stdint.h"
 #ifndef ESP32_RMT_REMOTES_H
 #define ESP32_RMT_REMOTES_H
@@ -22,8 +25,6 @@
 #define SEND_SONY           1
 #define RECEIVE_SONY        0
 #define SEND_RAW            1
-
-uint32_t remote_code;
 
 #ifdef SEND_NEC
 void rmtlib_nec_send(unsigned long data);

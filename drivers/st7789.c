@@ -158,7 +158,7 @@ void st7789_init_display(void)
   while (st_init_cmds[cmd].databytes!=0xff) {
     if (st_init_cmds[cmd].cmd == ST7789_CMD_WAIT)
     {
-      vTaskDelay(st_init_cmds[cmd].databytes / portTICK_RATE_MS);
+      vTaskDelay(st_init_cmds[cmd].databytes / portTICK_PERIOD_MS);
     }
     else
     {
@@ -172,7 +172,7 @@ void st7789_init_display(void)
 
 esp_err_t st7789_init_backlight(void)
 {
-  gpio_pad_select_gpio(ST7789_BL_IO);
+  esp_rom_gpio_pad_select_gpio(ST7789_BL_IO);
   gpio_set_direction(ST7789_BL_IO, GPIO_MODE_OUTPUT);
   
   /* Configure backlight for PWM (light control) */
@@ -220,8 +220,8 @@ esp_err_t st7789_init(void)
       {
         /* Initialize GPIOs */
         //gpio_pad_select_gpio(ST7789_BL_IO);
-        gpio_pad_select_gpio(ST7789_SPI_DC_IO);
-        gpio_pad_select_gpio(ST7789_SPI_CS_IO);
+        esp_rom_gpio_pad_select_gpio(ST7789_SPI_DC_IO);
+        esp_rom_gpio_pad_select_gpio(ST7789_SPI_CS_IO);
         //gpio_set_direction(ST7789_BL_IO, GPIO_MODE_OUTPUT);
         gpio_set_direction(ST7789_SPI_DC_IO, GPIO_MODE_OUTPUT);
         gpio_set_direction(ST7789_SPI_CS_IO, GPIO_MODE_OUTPUT);

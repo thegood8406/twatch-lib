@@ -23,18 +23,4 @@
 /* Include RTC HAL. */
 #include "hal/rtc.h"
 
-/* Include UI. */
-#include "ui/ui.h"
-#include "ui/button.h"
-#include "ui/container.h"
-#include "ui/events.h"
-#include "ui/image.h"
-#include "ui/label.h"
-#include "ui/listbox.h"
-#include "ui/progress.h"
-#include "ui/scrollbar.h"
-#include "ui/style.h"
-#include "ui/spinner.h"
-#include "ui/widget.h"
-
 #endif /* __INC_TWATCH_H */

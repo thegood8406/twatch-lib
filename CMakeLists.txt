@@ -25,22 +25,8 @@ idf_component_register(
   "hal/gps.c"
 
   "img/img.c"
-  "ui/ui.c"
-  "ui/modal.c"
-  "ui/widget.c"
-  "ui/image.c"
-  "ui/button.c"
-  "ui/label.c"
-  "ui/container.c"
-  "ui/progress.c"
-  "ui/scrollbar.c"
-  "ui/listbox.c"
-  "ui/frame.c"
-  "ui/slider.c"
-  "ui/switch.c"
-  "ui/spinner.c"
-  "font/font16.c"
 
   INCLUDE_DIRS "inc"
+  REQUIRES driver esp_timer
 
 )

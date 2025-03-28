@@ -52,7 +52,7 @@ void rmt_rx_init()
 void rmt_set_tx_pin(gpio_num_t gpio_num)
 {
 	//rmt_set_pin(rmt_channel_t channel, rmt_mode_t mode, gpio_num_t gpio_num)
-	rmt_set_pin(RMT_TX_CHANNEL, RMT_MODE_TX, gpio_num);
+	rmt_set_gpio(RMT_TX_CHANNEL, RMT_MODE_TX, gpio_num, false);
 }
 
 /*

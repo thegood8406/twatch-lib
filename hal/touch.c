@@ -1,6 +1,7 @@
 #include "esp_log.h"
 #include "hal/touch.h"
 #include "math.h"
+#include "esp_timer.h"
 
 #define TOUCH_TAG "[hal::touch]"
 
